@@ -23,7 +23,41 @@ public class CNUpcoming implements Parcelable{
 	private CNImage posters;
 	
 	
+	/**
+	 * getter and setter
+	 */
 	
+	public String getTotal(){
+		return this.total;
+	}
+	
+	public void setTotal(String s){
+		this.total = s;
+	}
+	
+	public CNMovies getMovies(){
+		return this.movies;
+	}
+	
+	public void setMovies(CNMovies movies){
+		this.movies = movies;
+	}
+	
+	public String getSynopsis(){
+		return this.synopsis;
+	}
+	
+	public void setSynopsis(String s){
+		this.synopsis=s;
+	}
+	
+	public CNImage getImages(){
+		return this.posters;
+	}
+	
+	public void setImages(CNImage post){
+		this.posters = post;
+	}
 	
 
 	@Override
@@ -33,9 +67,30 @@ public class CNUpcoming implements Parcelable{
 	}
 
 	@Override
-	public void writeToParcel(Parcel arg0, int arg1) {
+	public void writeToParcel(Parcel out, int arg1) {
 		// TODO Auto-generated method stub
 		
+		out.writeString(total);
+		out.writeString(synopsis);
+		
+		
+		
 	}
+	
+	CNUpcoming(Parcel in){
+		total = in.readString();
+		synopsis = in.readString();
+	}
+	
+	public static final Parcelable.Creator<CNUpcoming> CREATOR = new Parcelable.Creator<CNUpcoming>() {
+		public CNUpcoming createFromParcel(Parcel in) {
+			return new CNUpcoming(in);
+		}
+
+		public CNUpcoming[] newArray(int size) {
+			return new CNUpcoming[size];
+		}
+	};
+	
 
 }
