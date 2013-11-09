@@ -1,13 +1,17 @@
 package com.willyDigital.cineme.ui.Activity;
 
+
 import com.willyDigital.cineme.R;
-import com.willyDigital.cineme.R.layout;
-import com.willyDigital.cineme.R.menu;
+import com.willyDigital.cineme.Api.CNRequestBuilder;
+import com.willyDigital.cineme.Service.Service;
+
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
-import android.widget.Toast;
+
 
 public class MainActivity extends Activity {
 
@@ -15,7 +19,13 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		Toast.makeText(this, "hello", Toast.LENGTH_LONG).show();
+		Intent intent = CNRequestBuilder.intentForUpcomingMovies(this);
+		 intent.putExtra(Service.EXTRA_RESULT_RECEIVER, "tesst");
+		startService(intent);
+		
+				
+		Log.d("OnCreate", "startService here");
+		
 	}
 
 	@Override
